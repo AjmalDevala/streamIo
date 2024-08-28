@@ -3,12 +3,22 @@ import React, { useState } from "react";
 import { MenuIcon, XIcon } from "lucide-react"; // Assuming you're using "lucide-react" for icons
 import Link from "next/link";
 import Image from "next/image";
+import { useTheme } from "@/components/theme-provider";
+import { Moon, Sun } from "lucide-react";
 
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const { setTheme } = useTheme();
+  const [isOpen, setIsOpen] = useState(false);``
 
   return (
-    <nav className="bg-gray-800">
+    <nav className="bg-gray-800 dark:bg-white">
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-9">
         <div className="relative flex items-center justify-between h-20">
           {/* Mobile menu button */}
@@ -27,11 +37,34 @@ const Navbar = () => {
           </div>
           <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex-shrink-0">
-              <Link href="/" className="text-white font-bold text-lg">
+              <Link
+                href="/"
+                className="text-white font-bold text-lg dark:text-black"
+              >
                 Admin Dashboard
               </Link>
             </div>
           </div>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" size="icon">
+                <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                <span className="sr-only">Toggle theme</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem onClick={() => setTheme("light")}>
+                Light
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTheme("dark")}>
+                Dark
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setTheme("system")}>
+                System
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
             <div className="ml-3 relative">
               <button
