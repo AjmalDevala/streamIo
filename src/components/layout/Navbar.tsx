@@ -1,11 +1,12 @@
 "use client";
 import React, { useState } from "react";
+import { redirect } from 'next/navigation'
 import { MenuIcon, XIcon } from "lucide-react"; // Assuming you're using "lucide-react" for icons
 import Link from "next/link";
 import Image from "next/image";
+//UI
 import { useTheme } from "@/components/theme-provider";
 import { Moon, Sun } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -15,10 +16,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 const Navbar = () => {
   const { setTheme } = useTheme();
-  const [isOpen, setIsOpen] = useState(false);``
+  const [isOpen, setIsOpen] = useState(false);
+  ``;
 
   return (
-    <nav className="bg-gray-800 dark:bg-white">
+    <nav className="dark:bg-gray-800 bg-white border ">
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-9">
         <div className="relative flex items-center justify-between h-20">
           {/* Mobile menu button */}
@@ -39,7 +41,7 @@ const Navbar = () => {
             <div className="flex-shrink-0">
               <Link
                 href="/"
-                className="text-white font-bold text-lg dark:text-black"
+                className="dark:text-white font-bold text-lg text-black"
               >
                 Admin Dashboard
               </Link>
