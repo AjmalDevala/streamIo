@@ -84,7 +84,7 @@ export default function AuthForm() {
     // Handle Sign Up logic here
   }
   return (
-    <div className="max-w-md mt-20 ">
+    <div className="  w-[50%] p-6 md:m-auto md:mt-20 m-2 ">
       {/* Tabs for switching between Sign In and Sign Up */}
       <div className="flex justify-around mb-6">
         <button
@@ -111,111 +111,115 @@ export default function AuthForm() {
 
       {/* Sign In Form */}
       {!isSignUp && (
-        <Form {...signInForm}>
-          <form
-            onSubmit={signInForm.handleSubmit(onSignInSubmit)}
-            className="space-y-6"
-          >
-            <FormField
-              control={signInForm.control}
-              name="username"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Username</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Your username" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+        <div>
+          <Form {...signInForm}>
+            <form
+              onSubmit={signInForm.handleSubmit(onSignInSubmit)}
+              className="space-y-6"
+            >
+              <FormField
+                control={signInForm.control}
+                name="username"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Username</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Your username" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-            <FormField
-              control={signInForm.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="password"
-                      placeholder="Your password"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+              <FormField
+                control={signInForm.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Password</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        placeholder="Your password"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-            <Button type="submit" className="w-full">
-              Sign In
-            </Button>
-          </form>
-          <button className="mt-2" onClick={() => setIsSignUp(true)}>
-            not a Member
-          </button>
-        </Form>
+              <Button type="submit" className="w-full">
+                Sign In
+              </Button>
+            </form>
+            <button className="mt-2" onClick={() => setIsSignUp(true)}>
+              not a Member
+            </button>
+          </Form>
+        </div>
       )}
 
       {/* Sign Up Form */}
       {isSignUp && (
-        <Form {...signUpForm}>
-          <form
-            onSubmit={signUpForm.handleSubmit(onSignUpSubmit)}
-            className="space-y-6"
-          >
-            <FormField
-              control={signUpForm.control}
-              name="username"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Username</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Your username" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+        <div className="">
+          <Form {...signUpForm}>
+            <form
+              onSubmit={signUpForm.handleSubmit(onSignUpSubmit)}
+              className="space-y-6"
+            >
+              <FormField
+                control={signUpForm.control}
+                name="username"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Username</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Your username" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-            <FormField
-              control={signUpForm.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input type="email" placeholder="Your email" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+              <FormField
+                control={signUpForm.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input type="email" placeholder="Your email" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-            <FormField
-              control={signUpForm.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="password"
-                      placeholder="Your password"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+              <FormField
+                control={signUpForm.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Password</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        placeholder="Your password"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-            <Button type="submit" className="w-full">
-              Sign Up
-            </Button>
-          </form>
-        </Form>
+              <Button type="submit" className="w-full">
+                Sign Up
+              </Button>
+            </form>
+          </Form>
+        </div>
       )}
     </div>
   );
