@@ -20,13 +20,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
         <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-          <div className="w-full absolute">
+          <div className="relative min-h-screen">
             <Navbar />
-            <div className="flex flex-1 ">
-              <aside className="w-[12%]">
+            <div className="flex">
+              <aside className="fixed top-0 left-0 h-screen w-[15%] md:w-[15%] bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700">
                 <Slider />
               </aside>
-              <main className=" m-2 w-[87%]">{children}</main>
+              <main className="md:ml-[15%] p-2 md:w-[85%] ml-[15%]">{children}</main>
             </div>
           </div>
         </ThemeProvider>

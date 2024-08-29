@@ -20,7 +20,7 @@ const Navbar = () => {
   ``;
 
   return (
-    <nav className="dark:bg-gray-800 bg-white border ">
+    <nav className="dark:bg-gray-800 bg-white border sticky top-0 z-10    ">
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-9">
         <div className="relative flex items-center justify-between h-20">
           {/* Mobile menu button */}

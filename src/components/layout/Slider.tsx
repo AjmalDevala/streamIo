@@ -4,10 +4,10 @@ import React from "react";
 import Link from "next/link";
 const Slider = () => {
   return (
-    <div className="flex h-full w-full flex-col justify-between border-e dark:bg-gray-700 bg-white indent-10px">
-      <div>
-        <div className="flex items-center justify-center ">
-          <span className="flex justify-center p-2 ml-2  rounded-lg  text-lg text text-gray-600 dark:text-white">
+    <div className="fixed top-20 left-0 h-full md:w-72 flex flex-col justify-between border-e dark:bg-gray-800 bg-white z-10">
+      <div className="overflow-y-auto">
+        <div className="flex items-center justify-center py-4">
+          <span className="flex justify-center p-2 ml-2 rounded-lg text-lg text-gray-600 dark:text-white">
             Admin
           </span>
         </div>
@@ -17,11 +17,11 @@ const Slider = () => {
             <div className="py-4">
               <Link
                 href="/"
-                className="t group relative flex justify-center rounded bg-blue-50 px-2 py-1.5 text-blue-700"
+                className="group relative flex items-center rounded bg-blue-50 px-2 py-1.5 text-blue-700"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="size-5 opacity-75"
+                  className="h-5 w-5 opacity-75"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -39,9 +39,7 @@ const Slider = () => {
                   />
                 </svg>
 
-                <span className="invisible absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white group-hover:visible">
-                  General
-                </span>
+                <span className="ml-3 invisible md:visible">General</span>
               </Link>
             </div>
 
@@ -49,11 +47,11 @@ const Slider = () => {
               <li>
                 <a
                   href="#"
-                  className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                  className="group relative flex items-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="size-5 opacity-75"
+                    className="h-5 w-5 opacity-75"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -66,20 +64,18 @@ const Slider = () => {
                     />
                   </svg>
 
-                  <span className="invisible absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white group-hover:visible">
-                    Teams
-                  </span>
+                  <span className="ml-3 invisible md:visible">Teams</span>
                 </a>
               </li>
 
               <li>
                 <a
                   href="#"
-                  className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                  className="group relative flex items-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="size-5 opacity-75"
+                    className="h-5 w-5 opacity-75"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -92,20 +88,18 @@ const Slider = () => {
                     />
                   </svg>
 
-                  <span className="invisible absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white group-hover:visible">
-                    Billing
-                  </span>
+                  <span className="ml-3 invisible md:visible">Billing</span>
                 </a>
               </li>
 
               <li>
                 <a
                   href="#"
-                  className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                  className="group relative flex items-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="size-5 opacity-75"
+                    className="h-5 w-5 opacity-75"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -118,20 +112,18 @@ const Slider = () => {
                     />
                   </svg>
 
-                  <span className="invisible absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white group-hover:visible">
-                    Invoices
-                  </span>
+                  <span className="ml-3 invisible md:visible">Invoices</span>
                 </a>
               </li>
 
               <li>
                 <a
                   href="#"
-                  className="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                  className="group relative flex items-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="size-5 opacity-75"
+                    className="h-5 w-5 opacity-75"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -144,9 +136,7 @@ const Slider = () => {
                     />
                   </svg>
 
-                  <span className="invisible absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white group-hover:visible">
-                    Account
-                  </span>
+                  <span className="ml-3 invisible md:visible">Account</span>
                 </a>
               </li>
             </ul>
@@ -155,31 +145,14 @@ const Slider = () => {
       </div>
 
       <div className="sticky inset-x-0 bottom-0 border-t border-gray-100 bg-white p-2">
-        <form action="#">
+        <Link href="/auth">
           <button
             type="submit"
             className="group relative flex w-full justify-center rounded-lg px-2 py-1.5 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="size-5 opacity-75"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-              />
-            </svg>
-
-            <span className="invisible absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white group-hover:visible">
-              Logout
-            </span>
+            Logout
           </button>
-        </form>
+        </Link>
       </div>
     </div>
   );
