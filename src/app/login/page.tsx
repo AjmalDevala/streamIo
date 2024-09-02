@@ -1,11 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-//for validation
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-// ui shadcn
+import { date, z } from "zod";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -21,7 +19,6 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-// Define schema for Sign-In validation
 const SignInSchema = z.object({
   username: z.string().min(3, {
     message: "Username must be at least 3 characters.",
@@ -31,7 +28,6 @@ const SignInSchema = z.object({
   }),
 });
 
-// Define schema for Sign-Up validation
 const SignUpSchema = z.object({
   username: z.string().min(3, {
     message: "Username must be at least 3 characters.",
@@ -45,26 +41,22 @@ const SignUpSchema = z.object({
 export default function Login() {
   const [isSignUp, setIsSignUp] = useState(false);
 
-  const router = useRouter();
   const { data: session } = useSession();
-  const GoogleSignIn = async () => {
-    signIn("google");
-    if (session) {
-      toast({
-        title: "Google Sign In Successful!",
-        description: (
-          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-            <code className="text-white">
-              {JSON.stringify(session, null, 2)}
-            </code>
-          </pre>
-        ),
-      });
+  const router = useRouter();
 
-      console.log(session?.user?.name);
+  const GoogleSignIn = () => {
+    signIn("google");
+  };
+
+  useEffect(() => {
+    if (session) {
+      const userName = session?.user?.name || "Unknown User";
+      localStorage.setItem("name", userName);
+      localStorage.setItem("sessionActive", "true");
       router.push("/");
     }
-  };
+  }, [session, router]);
+
   const signInForm = useForm<z.infer<typeof SignInSchema>>({
     resolver: zodResolver(SignInSchema),
     defaultValues: {
@@ -105,8 +97,9 @@ export default function Login() {
     });
     // Handle Sign Up logic here
   }
+
   return (
-    <div className="  w-[50%] p-6 md:m-auto md:mt-20 m-2 ">
+    <div className="w-[50%] p-6 md:m-auto md:mt-20 m-2">
       <button
         onClick={GoogleSignIn}
         className="flex items-center mb-2 justify-center w-full p-2 bg-white border border-gray-300 rounded-lg shadow hover:bg-gray-100"
@@ -116,7 +109,7 @@ export default function Login() {
           Sign in with Google
         </span>
       </button>
-      <div className="flex justify-around  mb-6 border-t-2">
+      <div className="flex justify-around mb-6 border-t-2">
         <button
           onClick={() => setIsSignUp(false)}
           className={`${
@@ -138,6 +131,7 @@ export default function Login() {
           Sign Up
         </button>
       </div>
+
       {/* Sign In Form */}
       {!isSignUp && (
         <div>
@@ -183,14 +177,15 @@ export default function Login() {
               </Button>
             </form>
             <button className="mt-2" onClick={() => setIsSignUp(true)}>
-              not a Member
+              Not a Member?
             </button>
           </Form>
         </div>
       )}
+
       {/* Sign Up Form */}
       {isSignUp && (
-        <div className="">
+        <div>
           <Form {...signUpForm}>
             <form
               onSubmit={signUpForm.handleSubmit(onSignUpSubmit)}

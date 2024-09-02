@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import { redirect } from "next/navigation";
 import { MenuIcon, XIcon } from "lucide-react"; // Assuming you're using "lucide-react" for icons
@@ -95,16 +96,16 @@ const Navbar = () => {
       <div className={`${isOpen ? "block" : "hidden"} sm:hidden`}>
         <div className="px-2 pt-2 pb-3 space-y-1">
           <Link
-            href="/dashboard"
+            href="/"
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
             Dashboard
           </Link>
           <Link
-            href="/settings"
+            href="/users"
             className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
           >
-            Settings
+            Users
           </Link>
         </div>
       </div>
