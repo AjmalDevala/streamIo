@@ -1,8 +1,17 @@
 "use client";
-import Image from "next/image";
+
 import React from "react";
 import Link from "next/link";
+import { useSession, signIn, signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 const Slider = () => {
+  const router = useRouter();
+  
+  // const handleSignOut = async (): Promise<void> => {
+  //   signOut();
+  //   router.push("/login");
+  // };
+
   return (
     <div className="fixed top-20 left-0 h-full md:w-72 flex flex-col justify-between border-e dark:bg-gray-800 bg-white z-10">
       <div className="overflow-y-auto">
@@ -145,14 +154,18 @@ const Slider = () => {
       </div>
 
       <div className="sticky inset-x-0 bottom-0 border-t border-gray-100 bg-white p-2">
-        <Link href="/auth">
+        <div className="sticky inset-x-0 bottom-0 border-t border-gray-100 bg-white p-2">
           <button
-            type="submit"
+            onClick={() => {
+              signOut();
+              router.push("/login");
+            }}
+            type="button"
             className="group relative flex w-full justify-center rounded-lg px-2 py-1.5 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
           >
             Logout
           </button>
-        </Link>
+        </div>
       </div>
     </div>
   );

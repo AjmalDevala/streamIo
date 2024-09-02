@@ -17,8 +17,11 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
+import { useSession, signIn, signOut } from "next-auth/react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
-// Define schema for Sign-In
+// Define schema for Sign-In validation
 const SignInSchema = z.object({
   username: z.string().min(3, {
     message: "Username must be at least 3 characters.",
@@ -28,7 +31,7 @@ const SignInSchema = z.object({
   }),
 });
 
-// Define schema for Sign-Up
+// Define schema for Sign-Up validation
 const SignUpSchema = z.object({
   username: z.string().min(3, {
     message: "Username must be at least 3 characters.",
@@ -39,10 +42,29 @@ const SignUpSchema = z.object({
   }),
 });
 
-export default function AuthForm() {
-  // Ensure this is the default export
+export default function Login() {
   const [isSignUp, setIsSignUp] = useState(false);
 
+  const router = useRouter();
+  const { data: session } = useSession();
+  const GoogleSignIn = async () => {
+    signIn("google");
+    if (session) {
+      toast({
+        title: "Google Sign In Successful!",
+        description: (
+          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+            <code className="text-white">
+              {JSON.stringify(session, null, 2)}
+            </code>
+          </pre>
+        ),
+      });
+
+      console.log(session?.user?.name);
+      router.push("/");
+    }
+  };
   const signInForm = useForm<z.infer<typeof SignInSchema>>({
     resolver: zodResolver(SignInSchema),
     defaultValues: {
@@ -85,8 +107,16 @@ export default function AuthForm() {
   }
   return (
     <div className="  w-[50%] p-6 md:m-auto md:mt-20 m-2 ">
-      {/* Tabs for switching between Sign In and Sign Up */}
-      <div className="flex justify-around mb-6">
+      <button
+        onClick={GoogleSignIn}
+        className="flex items-center mb-2 justify-center w-full p-2 bg-white border border-gray-300 rounded-lg shadow hover:bg-gray-100"
+      >
+        <Image src="/google.png" alt="Google Icon" width={24} height={24} />
+        <span className="ml-2 text-sm font-medium text-gray-700">
+          Sign in with Google
+        </span>
+      </button>
+      <div className="flex justify-around  mb-6 border-t-2">
         <button
           onClick={() => setIsSignUp(false)}
           className={`${
@@ -108,7 +138,6 @@ export default function AuthForm() {
           Sign Up
         </button>
       </div>
-
       {/* Sign In Form */}
       {!isSignUp && (
         <div>
@@ -159,7 +188,6 @@ export default function AuthForm() {
           </Form>
         </div>
       )}
-
       {/* Sign Up Form */}
       {isSignUp && (
         <div className="">
