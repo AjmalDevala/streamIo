@@ -19,6 +19,8 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
+import { useDispatch } from "react-redux";
+import { setUserData } from "../lib/slices/userDataSlice";
 const SignInSchema = z.object({
   username: z.string().min(3, {
     message: "Username must be at least 3 characters.",
@@ -40,7 +42,7 @@ const SignUpSchema = z.object({
 
 export default function Login() {
   const [isSignUp, setIsSignUp] = useState(false);
-
+  const dispatch = useDispatch();
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -50,12 +52,18 @@ export default function Login() {
 
   useEffect(() => {
     if (session) {
-      const userName = session?.user?.name || "Unknown User";
-      localStorage.setItem("name", userName);
-      localStorage.setItem("sessionActive", "true");
+      const userName = session.user?.name || "Unknown User";
+      const userEmail = session.user?.email || "";
+      const userImage = session.user?.image || "";
+      dispatch(
+        setUserData({ name: userName, email: userEmail, image: userImage })
+      );
+      toast({
+        title: "Sign Up Successful!",
+      });
       router.push("/");
     }
-  }, [session, router]);
+  }, [session, dispatch, router]);
 
   const signInForm = useForm<z.infer<typeof SignInSchema>>({
     resolver: zodResolver(SignInSchema),
@@ -99,17 +107,8 @@ export default function Login() {
   }
 
   return (
-    <div className="w-[50%] p-6 md:m-auto md:mt-20 m-2">
-      <button
-        onClick={GoogleSignIn}
-        className="flex items-center mb-2 justify-center w-full p-2 bg-white border border-gray-300 rounded-lg shadow hover:bg-gray-100"
-      >
-        <Image src="/google.png" alt="Google Icon" width={24} height={24} />
-        <span className="ml-2 text-sm font-medium text-gray-700">
-          Sign in with Google
-        </span>
-      </button>
-      <div className="flex justify-around mb-6 border-t-2">
+    <div className="md:w-[50%] p-6 md:m-auto md:mt-20 m-2">
+      <div className="flex justify-around mb-6 border-t-3">
         <button
           onClick={() => setIsSignUp(false)}
           className={`${
@@ -244,6 +243,18 @@ export default function Login() {
           </Form>
         </div>
       )}
+      <div className="m-4 flex items-center  justify-center  ">
+        <h1>OR continue using other options</h1>
+      </div>
+      <button
+        onClick={GoogleSignIn}
+        className="flex items-center mb-2 justify-center w-full p-2 bg-white border border-gray-300 rounded-lg shadow hover:bg-gray-100"
+      >
+        <img src="/google.png" alt="Google Icon" width={24} height={24} />
+        <span className="ml-2 text-sm font-medium text-gray-700">
+          Sign in with Google
+        </span>
+      </button>
     </div>
   );
 }

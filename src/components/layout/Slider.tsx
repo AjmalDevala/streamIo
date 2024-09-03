@@ -1,11 +1,25 @@
 "use client";
-
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 import { toast } from "../ui/use-toast";
+import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/store";
 
 const Slider = () => {
+  const router = useRouter();
+  const user = useSelector((state: RootState) => state.user);
+  const handleLogout = async () => {
+    await signOut({ callbackUrl: "/login" });
+    // localStorage.clear();
+    toast({
+      title: "Logged Out",
+      description: "You have been logged out successfully.",
+    });
+    router.push("/login");
+  };
+
   return (
     <div className="fixed top-20 left-0 h-full md:w-72 flex flex-col justify-between border-e dark:bg-gray-800 bg-white z-10">
       <div className="overflow-y-auto">
@@ -20,7 +34,7 @@ const Slider = () => {
             <div className="py-4">
               <Link
                 href="/"
-                className="group relative flex items-center rounded bg-blue-50 px-2 py-1.5 text-blue-700 active:text-blue-900 "
+                className="group relative flex items-center rounded bg-blue-50 px-2 py-1.5 text-blue-700 active:text-blue-900"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -36,11 +50,10 @@ const Slider = () => {
                     d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
                   />
                 </svg>
-
                 <span className="ml-3 invisible md:visible">Dashboard</span>
               </Link>
             </div>
-            <div className="">
+            <div>
               <Link
                 href="/users"
                 className="group relative flex items-center rounded bg-blue-30 px-2 py-1.5 text-blue-700"
@@ -64,7 +77,6 @@ const Slider = () => {
                     d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
                   />
                 </svg>
-
                 <span className="ml-3 invisible md:visible">Users</span>
               </Link>
             </div>
@@ -89,11 +101,9 @@ const Slider = () => {
                       d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                     />
                   </svg>
-
                   <span className="ml-3 invisible md:visible">Teams</span>
                 </a>
               </li>
-
               <li>
                 <a
                   href="#"
@@ -113,11 +123,9 @@ const Slider = () => {
                       d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
                     />
                   </svg>
-
                   <span className="ml-3 invisible md:visible">Billing</span>
                 </a>
               </li>
-
               <li>
                 <a
                   href="#"
@@ -137,11 +145,9 @@ const Slider = () => {
                       d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
                     />
                   </svg>
-
                   <span className="ml-3 invisible md:visible">Invoices</span>
                 </a>
               </li>
-
               <li>
                 <a
                   href="#"
@@ -161,7 +167,6 @@ const Slider = () => {
                       d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                     />
                   </svg>
-
                   <span className="ml-3 invisible md:visible">Account</span>
                 </a>
               </li>
@@ -171,28 +176,21 @@ const Slider = () => {
       </div>
 
       <div className="sticky inset-x-0 bottom-0 border-t border-gray-100 bg-white p-2">
-        <button
-          onClick={async (event) => {
-            event.preventDefault(); // Prevent the page from refreshing
-            try {
-              toast({
-                title: "Log Out Successfully!",
-                description: "You have been logged out.",
-              });
-              localStorage.clear();
-              await signOut({ callbackUrl: "/login" });
-            } catch (error) {
-              console.error("Error during sign out:", error);
-              toast({
-                title: "Error!",
-                description: "There was an issue logging you out.",
-              });
-            }
-          }}
-          className="group relative flex w-full justify-center items-center rounded-lg bg-red-600 px-4 py-2 text-white"
-        >
-          Logout
-        </button>
+        {user?.sessionActive === true ? (
+          <button
+            onClick={handleLogout}
+            className="group relative flex w-full justify-center items-center rounded-lg bg-red-500 px-4 py-2 text-white"
+          >
+            Logout
+          </button>
+        ) : (
+          <Link
+            href="/login"
+            className="group relative flex w-full justify-center items-center rounded-lg bg-blue-500 px-4 py-2 text-white"
+          >
+            login
+          </Link>
+        )}
       </div>
     </div>
   );
