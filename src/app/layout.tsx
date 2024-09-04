@@ -17,7 +17,7 @@ export const metadata = {
     "StreamIO Admin Dashboard: Manage your streaming platform effortlessly with powerful tools for user management, content control, and performance analytics.",
 };
 // children type for typeScript
-
+const ClientId = process.env.PAYPAL_CLIENT_ID;
 export default function RootLayout({
   children,
 }: {
@@ -25,6 +25,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+
+      <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
       <body
         className={`${inter.className} antialiased`}
         suppressHydrationWarning

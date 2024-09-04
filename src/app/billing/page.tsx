@@ -1,4 +1,6 @@
 "use client";
+import PayPalButtonComponent from "@/components/common/PayPalButton";
+import Link from "next/link";
 import React from "react";
 
 function Billing() {
@@ -27,12 +29,12 @@ function Billing() {
               </span>
             </p>
 
-            <a
+            <Link
+              href="/billing/about"
               className="mt-4 block rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-center text-sm font-medium text-black dark:text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500 sm:mt-6"
-              href="#"
             >
               Get Started
-            </a>
+            </Link>
           </div>
 
           <div className="p-6 sm:px-8">
@@ -198,12 +200,12 @@ function Billing() {
               </span>
             </p>
 
-            <a
+            <Link
+              href="/billing/about"
               className="mt-4 block rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-center text-sm font-medium text-black dark:text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500 sm:mt-6"
-              href="#"
             >
               Get Started
-            </a>
+            </Link>
           </div>
 
           <div className="p-6 sm:px-8">
@@ -369,12 +371,12 @@ function Billing() {
               </span>
             </p>
 
-            <a
+            <Link
+              href="/billing/about"
               className="mt-4 block rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-center text-sm font-medium text-black dark:text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500 sm:mt-6"
-              href="#"
             >
               Get Started
-            </a>
+            </Link>
           </div>
 
           <div className="p-6 sm:px-8">
@@ -515,6 +517,7 @@ function Billing() {
           </div>
         </div>
       </div>
+      {/* <PayPalButtonComponent /> */}
     </div>
   );
 }
