@@ -35,7 +35,7 @@ export default function ChartOne() {
   return (
     <ChartContainer
       config={chartConfig}
-      className="min-h-[200px] bg-white dark:bg-[#030712] border m-1 rounded-md"
+      className="min-h-[200px] bg-white dark:bg-[#030712] border  rounded-md"
     >
       <BarChart accessibilityLayer data={chartData}>
         <XAxis

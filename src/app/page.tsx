@@ -10,8 +10,8 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4  pb-3 gap-4">
+    <div className="m-2">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4  gap-4">
         <div className="bg-[#2a9d90] dark:bg-[#030712] border shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-[#17564f] dark:border-gray-600 text-white font-medium group ">
           <div className="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
             <svg
@@ -106,7 +106,7 @@ export default function Home() {
         </div>
       </div>
       <div className="grid gap-3">
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 p-2 gap-2 ">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 p-1 gap-2 ">
           <div className="mb-3 md:mb-0 ">
             <LineChartList />
           </div>
@@ -132,6 +132,6 @@ export default function Home() {
           <ChartTwo />
         </div>
       </div>
-    </>
+    </div>
   );
 }

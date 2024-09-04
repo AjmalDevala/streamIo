@@ -105,8 +105,8 @@ const Slider = () => {
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  href="billing"
                   className="group relative flex items-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                 >
                   <svg
@@ -124,7 +124,7 @@ const Slider = () => {
                     />
                   </svg>
                   <span className="ml-3 invisible md:visible">Billing</span>
-                </a>
+                </Link>
               </li>
               <li>
                 <a
