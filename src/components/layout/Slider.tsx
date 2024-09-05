@@ -106,7 +106,7 @@ const Slider = () => {
               </li>
               <li>
                 <Link
-                  href="billing"
+                  href="pricing"
                   className="group relative flex items-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                 >
                   <svg
@@ -174,7 +174,33 @@ const Slider = () => {
           </div>
         </div>
       </div>
+      <div
+        role="alert"
+        className="rounded border-s-4 border-red-500 bg-red-50 p-4"
+      >
+        <div className="flex items-center gap-2 text-red-800">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="size-5"
+          >
+            <path
+              fillRule="evenodd"
+              d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
+              clipRule="evenodd"
+            />
+          </svg>
 
+          <strong className="block font-medium"> Something went wrong </strong>
+        </div>
+
+        <p className="mt-2 text-sm text-red-700">
+          Your using admin testing application. This project only shows dummy
+          data, not the original data. The payment also shows
+          sandbox.paypal.com. Please put it live when the testing is finished.
+        </p>
+      </div>
       <div className="sticky inset-x-0 bottom-0 border-t border-gray-100 bg-white p-2">
         {user?.sessionActive === true ? (
           <button
