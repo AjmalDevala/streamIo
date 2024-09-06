@@ -36,4 +36,30 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# streamIo
+
+
+# StreamIo - Next.js Project
+
+This is the **StreamIo** Next.js admin panel, a project built using Next.js for server-side rendering, dynamic routing, and efficient performance.
+
+## Project Structure
+
+```bash
+Next-Admin
+├── .husky/                 # Husky config. for Git hooks.
+├── public/                 # Static files (images, fonts, etc.).
+├── src/                    # Source files.
+│   ├── app/                # Next.js application pages.
+│   ├── assets/             # Assets like images, icons, etc.
+│   ├── components/         # React components.
+│   ├── config/             # Configuration files.
+│   ├── constants/          # Constants and enums.
+│   ├── locales/            # Translations.
+│   ├── services/           # Service utilities and API calls.
+│   ├── styles/             # Global styles and CSS modules.
+│   ├── utils/              # Utility functions and helpers.
+├── .env.sample             # Sample environment variables.
+├── .gitignore              # Git ignore file.
+├── package.json            # NPM package configuration.
+├── next.config.js          # Next.js configuration.
+├── README.md               # Project documentation.
