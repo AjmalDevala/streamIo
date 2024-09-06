@@ -45,6 +45,7 @@ This is the **StreamIo** Next.js admin panel, a project built using Next.js for 
 ## Project Structure
 
 ```bash
+
 Next-Admin
 ├── .husky/                 # Husky config. for Git hooks.
 ├── public/                 # Static files (images, fonts, etc.).
